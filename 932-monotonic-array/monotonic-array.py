@@ -8,7 +8,6 @@ class Solution:
                 if nums[i] < nums[i-1]:
                     direction = 'desc'
             else:
-                print(direction)
                 if direction == 'asc' and nums[i] < nums[i-1]:
                     return False
                 if direction == 'desc' and nums[i] > nums[i-1]:
