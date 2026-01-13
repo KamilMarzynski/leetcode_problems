@@ -33,18 +33,12 @@ var isSameTree = function(p, q) {
     const pTraverse = traverse(p);
     
     for (const [value, side] of pTraverse) {
-        console.log('---')
-        console.log('pvalue', value);
-        console.log('pside', side);
         const next = qTraverse.next();
         if(next.done) {
             return false;
         }
         
         const [qvalue, qside] = next.value;
-        console.log('qvalue', qvalue)
-        console.log('qside', qside)
-        console.log('---')
         if(qvalue !== value || qside !== side) {
             return false;
         }
