@@ -12,37 +12,7 @@
  * @return {boolean}
  */
 var isSameTree = function(p, q) {
-    const traverse = function*(node, side = 'root') {
-        if(!node) {
-            return;
-        }
-        yield [node.val, side];
-
-        if(node.left) {
-            yield* traverse(node.left, 'left');
-        } else {
-            yield [null, 'left']
-            yield* traverse(node.right, 'right');
-        }
-        if (node.right) {
-            yield* traverse(node.right, 'right');
-        }
-    }
-
-    const qTraverse = traverse(q);
-    const pTraverse = traverse(p);
-    
-    for (const [value, side] of pTraverse) {
-        const next = qTraverse.next();
-        if(next.done) {
-            return false;
-        }
-        
-        const [qvalue, qside] = next.value;
-        if(qvalue !== value || qside !== side) {
-            return false;
-        }
-    }
-
-    return qTraverse.next().done && pTraverse.next().done;
+    if (!p && !q) return true;
+    if (!p || !q) return false;
+    return p.val === q.val && isSameTree(p.left, q.left) && isSameTree(p.right, q.right);
 };
